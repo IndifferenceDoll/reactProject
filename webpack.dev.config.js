@@ -1,5 +1,5 @@
 const path = require('path')
-// const webpack = require('webpack')
+const webpack = require('webpack')
 
 module.exports = {
     // 入口
@@ -15,7 +15,20 @@ module.exports = {
         filename:'bundle.js'
     },
     module:{
-        rules:[{
+        loaders: [
+          {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: 'react-hot!babel'
+          },
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'eslint-loader'
+          }
+        ],
+        rules:[
+            {
             test:/\.js$/,
             use:['babel-loader?cacheDirectory=true'],
             include:path.join(__dirname,'src')
@@ -30,6 +43,12 @@ module.exports = {
     },
     plugins:[
         // new webpack.HotModuleReplacementPlugin()
+       new webpack.LoaderOptionsPlugin({
+        // test: /\.xxx$/, // may apply this only for some modules
+        options: {
+          eslint: './.eslintrc'
+        }
+      })
     ],
     resolve:{
         alias:{
@@ -38,6 +57,7 @@ module.exports = {
             router:path.join(__dirname,'src/router'),
             actions:path.join(__dirname,'src/redux/actions'),
             reducers:path.join(__dirname,'src/redux/reducers')
+            // '@': resolve('src')
         }
     }
 }
