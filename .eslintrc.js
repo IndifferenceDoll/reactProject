@@ -19,9 +19,17 @@ module.exports = {
     "react/prop-types": 0,
    // React Native has JSX in JS files
    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+   "import/no-unresolved": [0, {commonjs: true, amd: true}],//路径校验，webpack配置alias后，可以以绝对路径写，但eslint会报错，只能写相对路径或者关掉
+   "import/extensions": [ 0, {ignorePackages: true} ],//扩展名检验
   
    // React Native includes images via require("../images/example.png")
    "global-require": 0
   }
  }
+//  /*eslint-disable no-unused-vars*/ //针对某个文件关闭某项检测
+// import SC from 'soundcloud';
+// /*eslint-enable no-unused-vars*/ //针对某个文件开启某项检测
+// import React from 'react';
+// import ReactDOM from ‘react-dom';
+// ...
   

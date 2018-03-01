@@ -1,9 +1,11 @@
+/* eslint-disable no-undef */
+
+import getRouter from 'router/router';
 import React from 'react';
 import ReactDom from 'react-dom';
-import getRouter from 'router/router';
+import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import store from './redux/store';
-import { Provider } from 'react-redux';
 
 // 函数声明可以提升函数（包括函数名及函数体），所以上面能使用这个函数，如果var一个变量等于一个es6写法的函数则不行，函数表达式的var只提升了变量名，不提升函数体
 function renderWithHotReload(RootElememt) {

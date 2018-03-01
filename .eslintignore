@@ -1,4 +1,5 @@
 dist/*.js
+dist/*.html
 config/*.js
 webpack.dev.config.js
 node_modules/

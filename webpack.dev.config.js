@@ -5,6 +5,8 @@ module.exports = {
     // 入口
     // entry:path.join(__dirname,'src//index.js'),
     entry:[
+        // "webpack-dev-server/client?http://0.0.0.0:8888",
+        // "webpack/hot/only-dev-server",
         'react-hot-loader/patch',
         path.join(__dirname,'src/index.js')
     ],
@@ -15,24 +17,27 @@ module.exports = {
         filename:'bundle.js'
     },
     module:{
-        loaders: [
-          {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loader: 'react-hot!babel'
-          },
-          {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'eslint-loader'
-          }
-        ],
+        // loaders:[
+        //     {
+        //       test:/\.js$/,
+        //       loader:'react-hot',
+        //       exclude: /node_modules/
+        //     }
+        // ],
         rules:[
             {
-            test:/\.js$/,
-            use:['babel-loader?cacheDirectory=true'],
-            include:path.join(__dirname,'src')
-        }]
+              test: /\.js$/,
+              loader: 'eslint-loader', //若用多个，则use:['','']
+              enforce: 'pre',
+            //   include:path.join(__dirname,'src'),
+              exclude: /node_modules/
+            },
+            {
+              test:/\.js$/,
+              use:['babel-loader?cacheDirectory=true,presets[]=react,presets[]=es2015'],
+              include:path.join(__dirname,'src')
+            }
+        ]
     },
     devServer:{
         port:8888,
@@ -57,7 +62,6 @@ module.exports = {
             router:path.join(__dirname,'src/router'),
             actions:path.join(__dirname,'src/redux/actions'),
             reducers:path.join(__dirname,'src/redux/reducers')
-            // '@': resolve('src')
         }
     }
 }
