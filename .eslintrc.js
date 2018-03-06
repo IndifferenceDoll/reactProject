@@ -23,7 +23,9 @@ module.exports = {
    "import/extensions": [ 0, {ignorePackages: true} ],//扩展名检验
   
    // React Native includes images via require("../images/example.png")
-   "global-require": 0
+   "global-require": 0,
+   "no-plusplus":0,
+   "no-useless-return":0
   }
  }
 //  /*eslint-disable no-unused-vars*/ //针对某个文件关闭某项检测
