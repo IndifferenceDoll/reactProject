@@ -1,19 +1,6 @@
 
 import React, { Component } from 'react';
 
-const pStyle = {
-  width: 60,
-  height: 60,
-  borderRight: '1px solid black',
-  borderBottom: '1px solid black',
-  margin: 0,
-  padding: 0,
-  display: 'inline-block',
-  fontSize: 16,
-  fontWeight: 600,
-  textAlign: 'center',
-  lineHeight: '60px',
-};
 // 样式 style={某变量} className="变量名"
 function Blocks(props) {
   // 根据规模动态设置子块样式
@@ -25,6 +12,19 @@ function Blocks(props) {
     margin: 0,
     padding: 0,
     fontSize: 0,
+  };
+  const pStyle = {
+    width: 60,
+    height: 60,
+    borderRight: '1px solid black',
+    borderBottom: '1px solid black',
+    margin: 0,
+    padding: 0,
+    display: 'inline-block',
+    fontSize: 16,
+    fontWeight: 600,
+    textAlign: 'center',
+    lineHeight: '60px',
   };
   // 根据规模计算块总数
   const scales = props.scale ** 2;
