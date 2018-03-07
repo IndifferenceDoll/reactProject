@@ -25,7 +25,8 @@ module.exports = {
    // React Native includes images via require("../images/example.png")
    "global-require": 0,
    "no-plusplus":0,
-   "no-useless-return":0
+   "no-useless-return":0,
+   "max-len":[2, 120, 4]
   }
  }
 //  /*eslint-disable no-unused-vars*/ //针对某个文件关闭某项检测

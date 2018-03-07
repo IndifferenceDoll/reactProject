@@ -54,13 +54,34 @@ function Blocks(props) {
     </div>
   );
 }
-
+const btnStyle = {
+  cursor: 'pointer',
+  marginLeft: '20px',
+  background: '#22aff4',
+  outline: 'none',
+  border: 'none',
+  color: 'white',
+  padding: '3px 13px',
+  borderRadius: '3px',
+};
+const btnHoverStyle = {
+  cursor: 'pointer',
+  marginLeft: '20px',
+  background: 'gray',
+  outline: 'none',
+  border: 'none',
+  color: 'black',
+  padding: '3px 13px',
+  borderRadius: '3px',
+};
 export default class Schulte extends Component {
   constructor(props) {
     super(props);
-    this.state = { scale: 5 };
+    this.state = { scale: 5, isHover: false };
     this.handleChange = this.handleChange.bind(this);
     this.reset = this.reset.bind(this);
+    this.beforeHover = this.beforeHover.bind(this);
+    this.afterHover = this.afterHover.bind(this);
   }
   handleChange(e) {
     const hasPoint = e.target.value.indexOf('.') >= 0;
@@ -71,8 +92,14 @@ export default class Schulte extends Component {
     }
     this.setState({ scale: Math.floor(e.target.value) });
   }
-  reset() {
+  reset() { // 需要进一步处理，实现根据当前规模重置
     this.setState({ scale: 5 });
+  }
+  afterHover() { // 执行时不出发scale的重置
+    this.setState({ isHover: true });
+  }
+  beforeHover() { // 执行时不出发scale的重置
+    this.setState({ isHover: false });
   }
   render() {
     return (
@@ -80,16 +107,9 @@ export default class Schulte extends Component {
         <p>请输入生成规模：
           <input type="text" value={this.state.scale} onChange={this.handleChange} />
           <button
-            style={{
-            cursor: 'pointer',
-            marginLeft: '20px',
-            background: '#22aff4',
-            outline: 'none',
-            border: 'none',
-            color: 'white',
-            padding: '3px 13px',
-            borderRadius: '3px',
-            }}
+            style={this.state.isHover ? btnHoverStyle : btnStyle}
+            onMouseEnter={this.afterHover}
+            onMouseLeave={this.beforeHover}
             onClick={this.reset}
           >重置
           </button>
