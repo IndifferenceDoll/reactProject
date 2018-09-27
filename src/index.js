@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-
 import getRouter from 'router/router';
 import React from 'react';
 import ReactDom from 'react-dom';

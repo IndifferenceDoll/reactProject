@@ -36,7 +36,30 @@ module.exports = {
               test:/\.js$/,
               use:['babel-loader?cacheDirectory=true,presets[]=react,presets[]=es2015'],
               include:path.join(__dirname,'src')
-            }
+            },
+            
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    // {
+                    //     loader: 'css-loader?modules&localIdentName=[name]-[hash:base64:5]'
+                    // }
+                ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                  {
+                    loader: 'css-loader',
+                    options: {
+                      modules: true
+                    }
+                  }
+                ]
+              }
         ]
     },
     devServer:{
