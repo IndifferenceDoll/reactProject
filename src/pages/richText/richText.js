@@ -1,19 +1,18 @@
 
 /* eslint-disable */
 import React from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
-import Immutable from 'immutable';
+import { Editor, EditorState, RichUtils } from 'draft-js';//draft API
+// import Immutable from 'immutable';
 import "draft-js/dist/Draft.css";//发现不加这个目前也没啥影响，但是加上保险
-import styles from './richText.css'
-import {stateToHTML} from 'draft-js-export-html';
+import styles from './richText.css'//自定义样式
+import {stateToHTML} from 'draft-js-export-html';//将文本编辑器内容导出为html代码工具
 
 export default class MyEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { editorState: EditorState.createEmpty() };
-
-        this.focus = () => this.refs.editor.focus();
-        this.onChange = (editorState) => this.setState({ editorState });
+        this.state = { editorState: EditorState.createEmpty() };//初始化draft富文本对象
+        this.focus = () => this.refs.editor.focus();//使富文本组件获取焦点
+        this.onChange = (editorState) => this.setState({ editorState });//更新state中存储的draft富文本对象
         this.handleKeyCommand = (command) => this._handleKeyCommand(command);
         this.onTab = (e) => this._onTab(e);
         this.toggleBlockType = (type) => this._toggleBlockType(type);
