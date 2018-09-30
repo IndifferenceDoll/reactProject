@@ -4,11 +4,14 @@ import React from 'react';
 import { Editor, EditorState, RichUtils } from 'draft-js';//draft API
 // import Immutable from 'immutable';
 import styles from './index.css'//自定义样式
+import PropTypes from 'prop-types';
 import {stateToHTML} from 'draft-js-export-html';//将文本编辑器内容导出为html代码工具
 import BlockStyleControls from './BlockStyleControls';
 import InlineStyleControls from './InlineStyleControls';
 import ModelView from './ModelView';
+// import {contextObj} from './context';// react16.3以上才支持此api
 
+// const {Provider} = contextObj;// react16.3以上才支持此api
 export default class MyEditor extends React.Component {
     constructor(props) {
         super(props);
@@ -132,14 +135,24 @@ export default class MyEditor extends React.Component {
       // // }
     }
 
+
+    getChildContext() {
+        return {
+              name: 'jinyue',
+              isFormProvider: true,
+            };
+    }
+
     render() {
         return (
           <div>
               <div className={styles["RichEditor-root"]}>
-                  <BlockStyleControls
-                      editorState={this.state.editorState}
-                      onToggle={this.toggleBlockType}
-                      />
+                  {/* <Provider> // react16.3以上才支持此api*/}
+                    <BlockStyleControls
+                        editorState={this.state.editorState}
+                        onToggle={this.toggleBlockType}
+                        />
+                  {/* </Provider> // react16.3以上才支持此api*/}
                   <InlineStyleControls
                       editorState={this.state.editorState}
                       onToggle={this.toggleInlineStyle}
@@ -167,3 +180,7 @@ export default class MyEditor extends React.Component {
         );
     }
 }
+MyEditor.childContextTypes = {
+    name: PropTypes.string,
+    isFormProvider: PropTypes.bool,
+  };
